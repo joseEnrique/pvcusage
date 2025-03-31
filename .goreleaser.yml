@@ -34,13 +34,9 @@ archives:
       {{- else if eq .Arch "386" }}i386
       {{- else }}{{ .Arch }}{{ end }}
       {{- if .Arm }}v{{ .Arm }}{{ end }}
-    format: tar.gz
+    format: binary
     files:
-      - README.md
-      - LICENSE*
-    format_overrides:
-      - goos: windows
-        format: zip
+      - none*
 
 checksum:
   name_template: 'checksums.txt'
@@ -68,17 +64,17 @@ release:
     ### Available Binaries
     
     #### Linux
-    - `pvcusage_Linux_x86_64.tar.gz` (64-bit)
-    - `pvcusage_Linux_i386.tar.gz` (32-bit)
-    - `pvcusage_Linux_arm64.tar.gz` (ARM 64-bit)
+    - `pvcusage_Linux_x86_64` (64-bit)
+    - `pvcusage_Linux_i386` (32-bit)
+    - `pvcusage_Linux_arm64` (ARM 64-bit)
     
     #### macOS
-    - `pvcusage_Darwin_x86_64.tar.gz` (Intel)
-    - `pvcusage_Darwin_arm64.tar.gz` (Apple Silicon)
+    - `pvcusage_Darwin_x86_64` (Intel)
+    - `pvcusage_Darwin_arm64` (Apple Silicon)
     
     #### Windows
-    - `pvcusage_Windows_x86_64.zip` (64-bit)
-    - `pvcusage_Windows_i386.zip` (32-bit)
+    - `pvcusage_Windows_x86_64.exe` (64-bit)
+    - `pvcusage_Windows_i386.exe` (32-bit)
     
     SHA256 checksums are available in `checksums.txt`
     

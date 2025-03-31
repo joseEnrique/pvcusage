@@ -58,26 +58,6 @@ pvcusage -watch -s 10 -filter ">50" -top 5
 - `-filter`: Filter PVCs by usage percentage (e.g., `>50`, `<=80`, `=90`)
 - `-top`: Show only top N PVCs by usage percentage
 
-## Project Structure
-
-```
-pvcusage/
-├── main.go                    # Main entry point
-├── internal/                  # Internal packages
-│   ├── display/              # Display utilities
-│   │   ├── humanize.go      # Human-readable formatting
-│   │   └── table.go         # Table display
-│   └── k8s/                 # Kubernetes operations
-│       ├── client.go        # Kubernetes client
-│       ├── types.go         # Type definitions
-│       └── usage.go         # PVC usage operations
-├── .github/                  # GitHub configuration
-│   └── workflows/           # GitHub Actions workflows
-│       └── release.yml      # Release workflow
-├── .goreleaser.yml          # GoReleaser configuration
-├── go.mod                   # Go module definition
-└── README.md               # Project documentation
-```
 
 ## Development
 

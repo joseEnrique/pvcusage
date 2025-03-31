@@ -16,7 +16,7 @@ builds:
     ignore:
       - goos: windows
         goarch: arm64
-    main: ./cmd/pvcusage
+    main: ./cmd/pvcusage/main.go
     ldflags:
       - -s -w
       - -X main.version={{.Version}}

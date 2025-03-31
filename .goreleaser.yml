@@ -1,3 +1,5 @@
+version: 2
+
 before:
   hooks:
     - go mod tidy
@@ -12,7 +14,7 @@ builds:
     goarch:
       - amd64
       - arm64
-      - 386
+      - "386"
     ignore:
       - goos: windows
         goarch: arm64
@@ -24,7 +26,9 @@ builds:
       - -X main.date={{.Date}}
 
 archives:
-  - format: tar.gz
+  - id: default
+    builds:
+      - default
     name_template: >-
       {{ .ProjectName }}_
       {{- title .Os }}_
@@ -32,9 +36,7 @@ archives:
       {{- else if eq .Arch "386" }}i386
       {{- else }}{{ .Arch }}{{ end }}
       {{- if .Arm }}v{{ .Arm }}{{ end }}
-    format_overrides:
-      - goos: windows
-        format: zip
+    format: binary
 
 checksum:
   name_template: 'checksums.txt'

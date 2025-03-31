@@ -17,6 +17,7 @@ builds:
       - goos: windows
         goarch: arm64
     main: ./main.go
+    binary: pvcusage
     ldflags:
       - -s -w
       - -X main.version={{.Version}}
@@ -24,39 +25,19 @@ builds:
       - -X main.date={{.Date}}
 
 archives:
-  - id: default
-    builds:
-      - default
-    name_template: >-
-      {{ .ProjectName }}_
-      {{- title .Os }}_
-      {{- if eq .Arch "amd64" }}x86_64
-      {{- else if eq .Arch "386" }}i386
-      {{- else }}{{ .Arch }}{{ end }}
-      {{- if .Arm }}v{{ .Arm }}{{ end }}
+  - id: binary
     format: binary
-    files:
-      - none*
+    name_template: "{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}"
 
 checksum:
   name_template: 'checksums.txt'
-  algorithm: sha256
 
 snapshot:
   name_template: "{{ incpatch .Version }}-next"
 
-changelog:
-  sort: asc
-  filters:
-    exclude:
-      - '^docs:'
-      - '^test:'
-      - '^ci:'
-      - '^chore:'
-      - Merge pull request
-      - Merge branch
-
 release:
+  draft: false
+  prerelease: false
   mode: replace
   header: |
     ## Release {{ .Version }}
@@ -64,17 +45,17 @@ release:
     ### Available Binaries
     
     #### Linux
-    - `pvcusage_Linux_x86_64` (64-bit)
-    - `pvcusage_Linux_i386` (32-bit)
-    - `pvcusage_Linux_arm64` (ARM 64-bit)
+    - `pvcusage_linux_amd64` (64-bit)
+    - `pvcusage_linux_386` (32-bit)
+    - `pvcusage_linux_arm64` (ARM 64-bit)
     
     #### macOS
-    - `pvcusage_Darwin_x86_64` (Intel)
-    - `pvcusage_Darwin_arm64` (Apple Silicon)
+    - `pvcusage_darwin_amd64` (Intel)
+    - `pvcusage_darwin_arm64` (Apple Silicon)
     
     #### Windows
-    - `pvcusage_Windows_x86_64.exe` (64-bit)
-    - `pvcusage_Windows_i386.exe` (32-bit)
+    - `pvcusage_windows_amd64.exe` (64-bit)
+    - `pvcusage_windows_386.exe` (32-bit)
     
     SHA256 checksums are available in `checksums.txt`
     

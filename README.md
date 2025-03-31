@@ -22,9 +22,7 @@ go install github.com/joseEnrique/pvcusage@latest
 Download the latest release for your platform from the [releases page](https://github.com/joseEnrique/pvcusage/releases).
 
 Supported platforms:
-- Linux (amd64, arm64, 386)
-- macOS (amd64, arm64)
-- Windows (amd64, 386)
+- Linux (amd64)
 
 ## Usage
 
@@ -65,15 +63,20 @@ pvcusage -watch -s 10 -filter ">50" -top 5
 ```
 pvcusage/
 ├── main.go                    # Main entry point
-├── pkg/
-│   ├── format/               # Formatting utilities
-│   │   ├── humanize.go       # Human-readable formatting
-│   │   └── table.go          # Table display
-│   └── k8s/                  # Kubernetes operations
-│       ├── client.go         # Kubernetes client
-│       ├── types.go          # Type definitions
-│       └── usage.go          # PVC usage operations
-└── go.mod                    # Go module definition
+├── internal/                  # Internal packages
+│   ├── display/              # Display utilities
+│   │   ├── humanize.go      # Human-readable formatting
+│   │   └── table.go         # Table display
+│   └── k8s/                 # Kubernetes operations
+│       ├── client.go        # Kubernetes client
+│       ├── types.go         # Type definitions
+│       └── usage.go         # PVC usage operations
+├── .github/                  # GitHub configuration
+│   └── workflows/           # GitHub Actions workflows
+│       └── release.yml      # Release workflow
+├── .goreleaser.yml          # GoReleaser configuration
+├── go.mod                   # Go module definition
+└── README.md               # Project documentation
 ```
 
 ## Development
@@ -96,15 +99,15 @@ go build
 
 ## Release Process
 
-The project uses GitHub Actions and GoReleaser for automated releases:
+The project uses GitHub Actions for automated releases:
 
-1. For development builds:
-   - Push to `main` branch
-   - A snapshot release will be created automatically
+1. Create and push a tag:
+```bash
+git tag v1.0.0
+git push origin v1.0.0
+```
 
-2. For stable releases:
-   - Create and push a tag: `git tag v1.0.0 && git push origin v1.0.0`
-   - A new release will be created automatically
+2. A new release will be created automatically with the binary attached.
 
 ## Contributing
 

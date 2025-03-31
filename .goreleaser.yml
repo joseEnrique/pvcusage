@@ -57,7 +57,7 @@ changelog:
 release:
   mode: replace
   header: |
-    ## {{ .TagName }}
+    ## {{ .Version }}
     
     {{ .Changelog }}
     

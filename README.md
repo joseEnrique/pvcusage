@@ -21,8 +21,19 @@ go install github.com/joseEnrique/pvcusage@latest
 ### Using pre-built binaries
 Download the latest release for your platform from the [releases page](https://github.com/joseEnrique/pvcusage/releases).
 
-Supported platforms:
-- Linux (amd64)
+Available binaries:
+- Linux
+  - `pvcusage_Linux_x86_64` (64-bit)
+  - `pvcusage_Linux_i386` (32-bit)
+  - `pvcusage_Linux_arm64` (ARM 64-bit)
+- macOS
+  - `pvcusage_Darwin_x86_64` (Intel)
+  - `pvcusage_Darwin_arm64` (Apple Silicon)
+- Windows
+  - `pvcusage_Windows_x86_64.exe` (64-bit)
+  - `pvcusage_Windows_i386.exe` (32-bit)
+
+Each release includes SHA256 checksums in `checksums.txt` for verification.
 
 ## Usage
 
@@ -58,6 +69,26 @@ pvcusage -watch -s 10 -filter ">50" -top 5
 - `-filter`: Filter PVCs by usage percentage (e.g., `>50`, `<=80`, `=90`)
 - `-top`: Show only top N PVCs by usage percentage
 
+## Project Structure
+
+```
+pvcusage/
+├── main.go                    # Main entry point
+├── internal/                  # Internal packages
+│   ├── display/              # Display utilities
+│   │   ├── humanize.go      # Human-readable formatting
+│   │   └── table.go         # Table display
+│   └── k8s/                 # Kubernetes operations
+│       ├── client.go        # Kubernetes client
+│       ├── types.go         # Type definitions
+│       └── usage.go         # PVC usage operations
+├── .github/                  # GitHub configuration
+│   └── workflows/           # GitHub Actions workflows
+│       └── release.yml      # Release workflow
+├── .goreleaser.yml          # GoReleaser configuration
+├── go.mod                   # Go module definition
+└── README.md               # Project documentation
+```
 
 ## Development
 

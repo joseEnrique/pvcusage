@@ -15,11 +15,11 @@ A command-line tool to monitor Persistent Volume Claim (PVC) usage in Kubernetes
 
 ### Using Go install (recommended)
 ```bash
-go install github.com/joseEnrique/pvcusage/cmd/pvcusage@latest
+go install github.com/joseenriqueruiznavarro/pvcusage/cmd/pvcusage@latest
 ```
 
 ### Using pre-built binaries
-Download the latest release for your platform from the [releases page](https://github.com/joseEnrique/pvcusage/releases).
+Download the latest release for your platform from the [releases page](https://github.com/joseenriqueruiznavarro/pvcusage/releases).
 
 Supported platforms:
 - Linux (amd64, arm64, 386)
@@ -82,7 +82,7 @@ pvcusage/
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/joseEnrique/pvcusage.git
+git clone https://github.com/joseenriqueruiznavarro/pvcusage.git
 cd pvcusage
 ```
 
@@ -95,6 +95,18 @@ go mod tidy
 ```bash
 go build ./cmd/pvcusage
 ```
+
+## Release Process
+
+The project uses GitHub Actions and GoReleaser for automated releases:
+
+1. For development builds:
+   - Push to `main` branch
+   - A snapshot release will be created automatically
+
+2. For stable releases:
+   - Create and push a tag: `git tag v1.0.0 && git push origin v1.0.0`
+   - A new release will be created automatically
 
 ## Contributing
 

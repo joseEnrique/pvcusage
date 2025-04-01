@@ -8,6 +8,7 @@ import (
 	"time"
 
 	corev1 "k8s.io/api/core/v1"
+	"k8s.io/apimachinery/pkg/api/resource"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/rest"
@@ -276,21 +277,25 @@ func (c *Client) CreatePerformancePod(namespace, targetPod, pvcName string) (str
 							# In loop, monitor the PVC
 							while true; do
 								echo "------- PVC Monitor $(date) -------"
-								# Show disk usage
-								echo "Disk Usage:"
-								df -h /mnt/pvc
+								# Show disk usage in a parseable format
+								echo "DISK_USAGE_BEGIN"
+								df -h /mnt/pvc | grep -v "Filesystem"
+								echo "DISK_USAGE_END"
 								
 								# System stats
-								echo "System Stats:"
+								echo "SYSTEM_STATS_BEGIN"
 								top -bn1 | grep "load average:" | head -1
+								echo "SYSTEM_STATS_END"
 								
 								# IO stats
-								echo "IO Stats:"
+								echo "IO_STATS_BEGIN"
 								iostat -dxh 1 1 | grep -v "loop\|ram"
+								echo "IO_STATS_END"
 								
 								# Disk throughput estimation
-								echo "Disk Throughput:"
+								echo "THROUGHPUT_BEGIN"
 								dd if=/dev/zero of=/dev/null bs=1M count=1000 2>&1 | grep -i "bytes"
+								echo "THROUGHPUT_END"
 								
 								sleep 1
 							done
@@ -311,12 +316,12 @@ func (c *Client) CreatePerformancePod(namespace, targetPod, pvcName string) (str
 					},
 					Resources: corev1.ResourceRequirements{
 						Limits: corev1.ResourceList{
-							corev1.ResourceCPU:    pod.Spec.Containers[0].Resources.Limits[corev1.ResourceCPU],
-							corev1.ResourceMemory: pod.Spec.Containers[0].Resources.Limits[corev1.ResourceMemory],
+							corev1.ResourceCPU:    resource.MustParse("100m"),
+							corev1.ResourceMemory: resource.MustParse("128Mi"),
 						},
 						Requests: corev1.ResourceList{
-							corev1.ResourceCPU:    pod.Spec.Containers[0].Resources.Requests[corev1.ResourceCPU],
-							corev1.ResourceMemory: pod.Spec.Containers[0].Resources.Requests[corev1.ResourceMemory],
+							corev1.ResourceCPU:    resource.MustParse("50m"),
+							corev1.ResourceMemory: resource.MustParse("64Mi"),
 						},
 					},
 				},

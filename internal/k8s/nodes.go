@@ -95,7 +95,7 @@ func (c *Client) FindPodUsingPVC(namespace, pvcName string) (string, error) {
 
 	// Try to infer the pod from the PVC name for StatefulSets/Strimzi/Kafka
 
-	// Pattern 1: data-0-kafkajuniz-kafkajuniz-pool-0
+	// Pattern 1: data-0-kafka-kafka-pool-0
 	// This looks like Strimzi Kafka PVC pattern
 	if strings.HasPrefix(pvcName, "data-") {
 		parts := strings.Split(pvcName, "-")
@@ -106,15 +106,15 @@ func (c *Client) FindPodUsingPVC(namespace, pvcName string) (string, error) {
 		// If format is data-X-cluster-something
 		if len(parts) >= 4 {
 			ordinal := parts[1] // e.g., "0", "1", etc.
-			cluster := parts[2] // e.g., "kafkajuniz"
+			cluster := parts[2] // e.g., "kafkasomething"
 
 			// Common Strimzi Kafka pod naming patterns
 			patterns = append(patterns, []string{
-				fmt.Sprintf("%s-%s", cluster, ordinal),               // kafkajuniz-0
-				fmt.Sprintf("%s-%s", parts[2], ordinal),              // kafkajuniz-0
-				fmt.Sprintf("%s-%s-%s", parts[2], parts[3], ordinal), // kafkajuniz-kafkajuniz-0
-				fmt.Sprintf("%s-kafka-%s", cluster, ordinal),         // kafkajuniz-kafka-0
-				fmt.Sprintf("%s-zookeeper-%s", cluster, ordinal),     // kafkajuniz-zookeeper-0
+				fmt.Sprintf("%s-%s", cluster, ordinal),
+				fmt.Sprintf("%s-%s", parts[2], ordinal),
+				fmt.Sprintf("%s-%s-%s", parts[2], parts[3], ordinal),
+				fmt.Sprintf("%s-kafka-%s", cluster, ordinal),
+				fmt.Sprintf("%s-zookeeper-%s", cluster, ordinal),
 			}...)
 		}
 

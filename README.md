@@ -99,12 +99,33 @@ Combine options:
 pvcusage -watch -s 10 -filter ">50" -top 5
 ```
 
+### PVC Performance Monitoring
+
+You can monitor the performance of a specific PVC that is being used by a pod. This feature creates a sidecar container that mounts the PVC and measures its performance metrics in real-time.
+
+To monitor the performance of a specific PVC:
+```bash
+pvcusage -pvc my-pvc -namespace my-namespace -perf
+```
+
+This will display real-time metrics including:
+- IOPS (Input/Output Operations Per Second)
+- Throughput (MB/s)
+- Latency (ms)
+- Disk utilization (%)
+- Storage capacity and usage
+
+Press Ctrl+C to stop monitoring and clean up resources.
+
 ## Flags
 
 - `-watch`: Enable watch mode (refresh every s seconds)
 - `-s`: Interval in seconds for watch mode (default: 5)
 - `-filter`: Filter PVCs by usage percentage (e.g., `>50`, `<=80`, `=90`)
 - `-top`: Show only top N PVCs by usage percentage
+- `-pvc`: Name of a specific PVC to analyze
+- `-namespace`: Namespace of the PVC to analyze (required with -pvc)
+- `-perf`: Enable performance monitoring for the specified PVC
 
 ## Project Structure
 

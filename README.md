@@ -35,6 +35,44 @@ Available binaries:
 
 Each release includes SHA256 checksums in `checksums.txt` for verification.
 
+
+### Using wget
+
+Para instalar la última versión usando `wget`, ejecuta el siguiente comando según tu arquitectura:
+
+#### Para Linux (amd64)
+
+```bash
+wget https://github.com/joseenrique/pvcusage/releases/latest/download/pvcusage_linux_amd64.tar.gz
+tar -xzf pvcusage_linux_amd64.tar.gz
+sudo mv pvcusage /usr/local/bin/
+```
+
+#### Para Linux (arm64)
+
+```bash
+wget https://github.com/joseenrique/pvcusage/releases/latest/download/pvcusage_linux_arm64.tar.gz
+tar -xzf pvcusage_linux_arm64.tar.gz
+sudo mv pvcusage /usr/local/bin/
+```
+
+#### Para macOS (Intel)
+
+```bash
+wget https://github.com/joseenrique/pvcusage/releases/latest/download/pvcusage_darwin_amd64.tar.gz
+tar -xzf pvcusage_darwin_amd64.tar.gz
+sudo mv pvcusage /usr/local/bin/
+```
+
+#### Para macOS (Apple Silicon)
+
+```bash
+wget https://github.com/joseenrique/pvcusage/releases/latest/download/pvcusage_darwin_arm64.tar.gz
+tar -xzf pvcusage_darwin_arm64.tar.gz
+sudo mv pvcusage /usr/local/bin/
+```
+
+
 ## Usage
 
 Basic usage:

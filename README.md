@@ -42,7 +42,7 @@ To install the latest version, run the following command according to your archi
 #### For Linux (amd64)
 
 ```bash
-wget https://github.com/joseEnrique/pvcusage/releases/download/v1.0.13/pvcusage_linux_amd64
+wget https://github.com/joseEnrique/pvcusage/releases/download/v1.0.14/pvcusage_linux_amd64
 sudo mv pvcusage_linux_amd64 /usr/local/bin/pvcusage
 chmod +x /usr/local/bin/pvcusage
 ```
@@ -50,7 +50,7 @@ chmod +x /usr/local/bin/pvcusage
 #### For Linux (arm64)
 
 ```bash
-wget https://github.com/joseEnrique/pvcusage/releases/download/v1.0.13/pvcusage_linux_arm64
+wget https://github.com/joseEnrique/pvcusage/releases/download/v1.0.14/pvcusage_linux_arm64
 sudo mv pvcusage_linux_arm64 /usr/local/bin/pvcusage
 chmod +x /usr/local/bin/pvcusage
 ```
@@ -58,7 +58,7 @@ chmod +x /usr/local/bin/pvcusage
 #### For macOS (Intel)
 
 ```bash
-wget https://github.com/joseEnrique/pvcusage/releases/download/v1.0.13/pvcusage_darwin_amd64
+wget https://github.com/joseEnrique/pvcusage/releases/download/v1.0.14/pvcusage_darwin_amd64
 sudo mv pvcusage_darwin_amd64 /usr/local/bin/pvcusage
 chmod +x /usr/local/bin/pvcusage
 ```
@@ -66,7 +66,7 @@ chmod +x /usr/local/bin/pvcusage
 #### For macOS (Apple Silicon)
 
 ```bash
-wget https://github.com/joseEnrique/pvcusage/releases/download/v1.0.13/pvcusage_darwin_arm64
+wget https://github.com/joseEnrique/pvcusage/releases/download/v1.0.14/pvcusage_darwin_arm64
 sudo mv pvcusage_darwin_arm64 /usr/local/bin/pvcusage
 chmod +x /usr/local/bin/pvcusage
 ```

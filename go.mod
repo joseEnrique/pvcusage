@@ -1,4 +1,4 @@
-module pvcusage
+module github.com/joseEnrique/pvcusage
 
 go 1.23.0
 

@@ -5,7 +5,7 @@ import (
 	"os"
 	"text/tabwriter"
 
-	"pvcusage/pkg/k8s"
+	"github.com/joseEnrique/pvcusage/pkg/k8s"
 )
 
 // Table represents a formatted table display

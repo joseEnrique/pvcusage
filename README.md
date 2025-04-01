@@ -35,41 +35,40 @@ Available binaries:
 
 Each release includes SHA256 checksums in `checksums.txt` for verification.
 
+### Installing the binary
 
-### Using wget
+To install the latest version, run the following command according to your architecture:
 
-Para instalar la última versión usando `wget`, ejecuta el siguiente comando según tu arquitectura:
-
-#### Para Linux (amd64)
+#### For Linux (amd64)
 
 ```bash
-wget https://github.com/joseenrique/pvcusage/releases/latest/download/pvcusage_linux_amd64.tar.gz
-tar -xzf pvcusage_linux_amd64.tar.gz
-sudo mv pvcusage /usr/local/bin/
+wget https://github.com/joseEnrique/pvcusage/releases/download/v1.0.13/pvcusage_linux_amd64
+sudo mv pvcusage_linux_amd64 /usr/local/bin/pvcusage
+chmod +x /usr/local/bin/pvcusage
 ```
 
-#### Para Linux (arm64)
+#### For Linux (arm64)
 
 ```bash
-wget https://github.com/joseenrique/pvcusage/releases/latest/download/pvcusage_linux_arm64.tar.gz
-tar -xzf pvcusage_linux_arm64.tar.gz
-sudo mv pvcusage /usr/local/bin/
+wget https://github.com/joseEnrique/pvcusage/releases/download/v1.0.13/pvcusage_linux_arm64
+sudo mv pvcusage_linux_arm64 /usr/local/bin/pvcusage
+chmod +x /usr/local/bin/pvcusage
 ```
 
-#### Para macOS (Intel)
+#### For macOS (Intel)
 
 ```bash
-wget https://github.com/joseenrique/pvcusage/releases/latest/download/pvcusage_darwin_amd64.tar.gz
-tar -xzf pvcusage_darwin_amd64.tar.gz
-sudo mv pvcusage /usr/local/bin/
+wget https://github.com/joseEnrique/pvcusage/releases/download/v1.0.13/pvcusage_darwin_amd64
+sudo mv pvcusage_darwin_amd64 /usr/local/bin/pvcusage
+chmod +x /usr/local/bin/pvcusage
 ```
 
-#### Para macOS (Apple Silicon)
+#### For macOS (Apple Silicon)
 
 ```bash
-wget https://github.com/joseenrique/pvcusage/releases/latest/download/pvcusage_darwin_arm64.tar.gz
-tar -xzf pvcusage_darwin_arm64.tar.gz
-sudo mv pvcusage /usr/local/bin/
+wget https://github.com/joseEnrique/pvcusage/releases/download/v1.0.13/pvcusage_darwin_arm64
+sudo mv pvcusage_darwin_arm64 /usr/local/bin/pvcusage
+chmod +x /usr/local/bin/pvcusage
 ```
 
 

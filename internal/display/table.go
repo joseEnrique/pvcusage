@@ -2,10 +2,12 @@ package display
 
 import (
 	"fmt"
+	"log"
 	"os"
 	"text/tabwriter"
 
-	"pvcusage/internal/pvc"
+	"github.com/joseEnrique/pvcusage/internal/k8s"
+	"github.com/joseEnrique/pvcusage/internal/pvc"
 )
 
 // Table displays PVC usage information in a formatted table
@@ -36,4 +38,24 @@ func (t *Table) Show(usages []pvc.Usage) {
 // ClearScreen clears the terminal (works on most ANSI terminals)
 func ClearScreen() {
 	fmt.Print("\033[H\033[2J")
+}
+
+// UpdateTable queries all nodes, extracts PVC usage data, and prints a formatted table.
+func UpdateTable(client *k8s.Client, filter string, topN int) {
+	usages, err := pvc.GetUsages(client)
+	if err != nil {
+		log.Printf("Error getting PVC usages: %v", err)
+		return
+	}
+
+	filteredUsages, err := pvc.FilterUsages(usages, filter)
+	if err != nil {
+		log.Printf("Error filtering usages: %v", err)
+		return
+	}
+
+	limitedUsages := pvc.LimitTopN(filteredUsages, topN)
+
+	table := NewTable()
+	table.Show(limitedUsages)
 }

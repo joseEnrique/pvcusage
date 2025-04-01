@@ -5,7 +5,7 @@ import (
 	"sort"
 	"strconv"
 
-	"pvcusage/internal/k8s"
+	"github.com/joseEnrique/pvcusage/internal/k8s"
 )
 
 // GetUsages retrieves and calculates PVC usage across all nodes

@@ -327,10 +327,16 @@ func (m *Monitor) Stop() error {
 	if m.useFallback {
 		return nil
 	}
+	deletePolicy := metav1.DeletePropagationForeground
+
+	deleteOptions := metav1.DeleteOptions{
+		GracePeriodSeconds: int64Ptr(0),
+		PropagationPolicy:  &deletePolicy,
+	}
 
 	// Delete the performance pod
 	err := m.client.Clientset.CoreV1().Pods(m.namespace).Delete(
-		context.TODO(), m.perfPod, metav1.DeleteOptions{})
+		context.TODO(), m.perfPod, deleteOptions)
 	if err != nil {
 		return fmt.Errorf("error deleting performance pod: %v", err)
 	}

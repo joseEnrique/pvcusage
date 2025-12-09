@@ -72,8 +72,14 @@ func ParseFilter(filter string) (string, float64, error) {
 			value, err = strconv.ParseFloat(filter[1:], 64)
 		}
 	default:
-		operator = ">"
-		value, err = strconv.ParseFloat(filter, 64)
+		// Check if first char is a digit or . or -
+		if (filter[0] >= '0' && filter[0] <= '9') || filter[0] == '.' || filter[0] == '-' {
+			operator = ">"
+			value, err = strconv.ParseFloat(filter, 64)
+		} else {
+			// Invalid start character and not an operator
+			return "", 0, fmt.Errorf("invalid filter format")
+		}
 	}
 
 	if err != nil {
